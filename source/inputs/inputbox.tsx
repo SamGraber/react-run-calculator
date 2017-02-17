@@ -8,10 +8,9 @@ export interface InputboxProps<T> {
 	disabled?: boolean;
 }
 
-export const Inputbox = ({ id, type, value, onChange, disabled }: InputboxProps<any>) => (
-	<input type={type}
-		   className="form-control"
+export const Inputbox = ({ id, value, onChange, ...params }: InputboxProps<any>) => (
+	<input className="form-control"
 		   value={value || ''}
-		   onChange={event => onChange(event.target.value)}
-		   disabled={disabled} />
+		   {...params}
+		   onChange={event => onChange(event.target.value)} />
 );
