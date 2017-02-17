@@ -29,7 +29,7 @@ export class Goal extends React.Component<any, GoalState> {
 		return new Date(this.state.averagePace.getTime() - this.state.goal.getTime());
 	}
 
-	setGoal(): void {
+	setGoal = (): void => {
 		this.goalService.putGoal(this.state.pendingGoal).then(() => {
 			this.setState({
 				goal: toDate(this.state.pendingGoal),
@@ -38,8 +38,12 @@ export class Goal extends React.Component<any, GoalState> {
 		});
 	}
 
-	clearGoal(): void {
+	clearGoal = (): void => {
 		this.goalService.putGoal(null).then(() => this.setState({ goal: null }));
+	}
+
+	setPendingGoal = (input: React.ChangeEvent<{ value: string }>): void => {
+		this.setState({ pendingGoal: +input.target.value })
 	}
 
 	render(): JSX.Element {
@@ -55,7 +59,7 @@ export class Goal extends React.Component<any, GoalState> {
 						<p>What is your desired pace?</p>
 						<div className="form-group row">
 							<div className="col-xs-6">
-								{/*<input className="form-control" type="number" id="goal" [(ngModel)]="pendingGoal" />*/}
+								<input className="form-control" type="number" id="goal" value={this.state.pendingGoal || ''} onChange={this.setPendingGoal} />
 							</div>
 							<div className="col-xs-6 form-control-static">minutes per mile</div>
 						</div>

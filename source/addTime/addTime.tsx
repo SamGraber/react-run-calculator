@@ -13,8 +13,17 @@ export class AddTime extends React.Component<any, AddTimeState> {
 
 	@lazyInject(TimeService) timeService: TimeService;
 
-	saveTime(): void {
+	saveTime = (event: React.FormEvent<any>): void => {
 		this.timeService.postTime(this.state.time).then(() => this.setState({ time: {} as any }));
+		event.preventDefault();
+	}
+
+	setDistance = (event: React.ChangeEvent<{ value: string }>): void => {
+		this.setState({ time: Object.assign({}, this.state.time, { distance: +event.target.value }) })
+	}
+	
+	setTime = (event: React.ChangeEvent<{ value: string }>): void => {
+		this.setState({ time: Object.assign({}, this.state.time, { time: +event.target.value }) })
 	}
 
 	render(): JSX.Element {
@@ -23,13 +32,12 @@ export class AddTime extends React.Component<any, AddTimeState> {
 		}
 		
 		return (
-			// <form (ngSubmit)="saveTime()">
-			<form>
+			<form onSubmit={this.saveTime}>
 				<div className="form-group">
 					<label htmlFor="distance">Distance</label>
 					<div className="row">
 						<div className="col-xs-6">
-							{/*<input className="form-control" type="number" id="distance" name="distance" [(ngModel)]="time.distance" />*/}
+							<input className="form-control" type="number" id="distance" name="distance" value={this.state.time.distance || ''} onChange={this.setDistance} />
 						</div>
 						<div className="col-xs-6 form-control-static">miles</div>
 					</div>
@@ -38,7 +46,7 @@ export class AddTime extends React.Component<any, AddTimeState> {
 					<label htmlFor="time">Time</label>
 					<div className="row">
 						<div className="col-xs-6">
-							{/*<input className="form-control" type="number" id="time" name="time" [(ngModel)]="time.time" />*/}
+							<input className="form-control" type="number" id="time" name="time"  value={this.state.time.time || ''} onChange={this.setTime} />
 						</div>
 						<div className="col-xs-6 form-control-static">minutes</div>
 					</div>
