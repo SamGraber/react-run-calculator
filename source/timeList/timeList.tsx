@@ -32,7 +32,7 @@ export class TimeList extends React.Component<any, { timeList: IFormattedTimeEnt
 			<ul className="list-group">
 				{this.state.timeList.map(time => (
 					<li className="list-group-item row" key={time.id}>
-						<div className="col-xs-4 form-control-static">{time.distance} miles</div>
+						<div className="col-xs-4 form-control-static">{time.distance.toFixed(2)} miles</div>
 						<div className="col-xs-3 form-control-static">{moment(time.time).format('m:ss')} minutes</div>
 						<div className="col-xs-3 form-control-static">{moment(time.pace).format('m:ss')} minutes per mile</div>
 						<div className="col-xs-2"><button className="btn btn-danger" onClick={() => this.deleteTime(time)}>Remove</button></div>
