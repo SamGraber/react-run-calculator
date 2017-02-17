@@ -4,6 +4,8 @@ import { lazyInject } from '../decorators';
 
 import { ITimeEntry, TimeService } from '../services/time.service';
 import { Numberbox } from '../inputs/numberbox';
+import { Form } from '../form/form';
+import { ButtonSubmit } from '../buttons/buttonSubmit';
 
 export interface AddTimeState {
 	time: ITimeEntry;
@@ -33,7 +35,7 @@ export class AddTime extends React.Component<any, AddTimeState> {
 		}
 		
 		return (
-			<form onSubmit={this.saveTime}>
+			<Form onSubmit={this.saveTime}>
 				<div className="form-group">
 					<label htmlFor="distance">Distance</label>
 					<div className="row">
@@ -53,9 +55,9 @@ export class AddTime extends React.Component<any, AddTimeState> {
 					</div>
 				</div>
 				<div className="form-group">
-					<button className="btn btn-primary" type="submit">Add time</button>
+					<ButtonSubmit type="primary">Add time</ButtonSubmit>
 				</div>
-			</form>
+			</Form>
 		);
 	}
 }

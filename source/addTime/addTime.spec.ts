@@ -21,7 +21,7 @@ describe('AddTime', () => {
 		const newTime = { time: 2 };
 		component.setState({ time: newTime as any });
 		
-		component.saveTime(<any>{ preventDefault: sinon.spy() });
+		component.saveTime();
 
 		sinon.assert.calledOnce(timeService.postTime);
 		expect(timeService.postTime.firstCall.args[0]).to.equal(newTime);
