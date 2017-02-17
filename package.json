@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/es6-shim": "^0.31.32",
     "@types/inversify-inject-decorators": "^2.0.0",
+    "@types/moment": "^2.13.0",
     "@types/react": "^15.0.10",
     "@types/react-dom": "^0.14.23",
     "@types/react-router": "^3.0.3",
@@ -23,6 +24,7 @@
     "inversify": "^3.1.0",
     "inversify-inject-decorators": "^3.0.1",
     "json-server": "^0.9.4",
+    "moment": "^2.17.1",
     "npm-run-all": "^4.0.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

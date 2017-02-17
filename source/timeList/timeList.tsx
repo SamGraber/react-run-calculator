@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as moment from 'moment';
 import { lazyInject } from '../decorators';
 
 import { TimeService } from '../services/time.service';
@@ -32,8 +33,8 @@ export class TimeList extends React.Component<any, { timeList: IFormattedTimeEnt
 				{this.state.timeList.map(time => (
 					<li className="list-group-item row" key={time.id}>
 						<div className="col-xs-4 form-control-static">{time.distance} miles</div>
-						<div className="col-xs-3 form-control-static">{time.time.toString()} minutes</div>
-						<div className="col-xs-3 form-control-static">{time.pace.toString()} minutes per mile</div>
+						<div className="col-xs-3 form-control-static">{moment(time.time).format('m:ss')} minutes</div>
+						<div className="col-xs-3 form-control-static">{moment(time.pace).format('m:ss')} minutes per mile</div>
 						<div className="col-xs-2"><button className="btn btn-danger" onClick={() => this.deleteTime(time)}>Remove</button></div>
 					</li>
 				))}

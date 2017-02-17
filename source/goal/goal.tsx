@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as moment from 'moment';
 import { lazyInject } from '../decorators';
 
 import { GoalService } from '../services/goal.service';
@@ -48,7 +49,7 @@ export class Goal extends React.Component<any, GoalState> {
 		
 		return (
 			<div>
-				<p>Your current average pace is {this.state.averagePace.toString()} minutes per mile</p>
+				<p>Your current average pace is {moment(this.state.averagePace).format('m:ss')} minutes per mile</p>
 				{!this.state.goal ?
 					<div>
 						<p>What is your desired pace?</p>
@@ -65,8 +66,8 @@ export class Goal extends React.Component<any, GoalState> {
 				: null }
 				{!!this.state.goal ?
 					<div>
-						<p>Your goal is {this.state.goal.toString()} minutes per mile</p>
-						<p>To reach your goal, you will need to improve your average by {this.averageMinusGoal().toString()} minutes per mile</p>
+						<p>Your goal is {moment(this.state.goal).format('m:ss')} minutes per mile</p>
+						<p>To reach your goal, you will need to improve your average by {moment(this.averageMinusGoal()).format('m:ss')} minutes per mile</p>
 						<div className="form-group">
 							<button className="btn btn-danger" onClick={this.clearGoal}>Clear goal</button>
 						</div>
