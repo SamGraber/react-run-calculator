@@ -5,6 +5,7 @@ import { lazyInject } from '../decorators';
 import { GoalService } from '../services/goal.service';
 import { TimeService, ITimeEntry } from '../services/time.service';
 import { calculatePace, toDate } from '../services/utility';
+import { Numberbox } from '../inputs/numberbox';
 
 export interface GoalState {
 	goal: Date;
@@ -42,8 +43,8 @@ export class Goal extends React.Component<any, GoalState> {
 		this.goalService.putGoal(null).then(() => this.setState({ goal: null }));
 	}
 
-	setPendingGoal = (input: React.ChangeEvent<{ value: string }>): void => {
-		this.setState({ pendingGoal: +input.target.value })
+	setPendingGoal = (pendingGoal: number): void => {
+		this.setState({ pendingGoal });
 	}
 
 	render(): JSX.Element {
@@ -59,7 +60,7 @@ export class Goal extends React.Component<any, GoalState> {
 						<p>What is your desired pace?</p>
 						<div className="form-group row">
 							<div className="col-xs-6">
-								<input className="form-control" type="number" id="goal" value={this.state.pendingGoal || ''} onChange={this.setPendingGoal} />
+								<Numberbox id="goal" value={this.state.pendingGoal} onChange={this.setPendingGoal} />
 							</div>
 							<div className="col-xs-6 form-control-static">minutes per mile</div>
 						</div>

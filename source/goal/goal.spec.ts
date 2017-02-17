@@ -90,23 +90,11 @@ describe('Goal', () => {
 		});
 
 		it('should provide an input for the user to set a goal if none is set', () => {
-			let input = getGoalInput(component);
+			const setPaceDiv = component.render().props.children[1];
+			const formGroupDiv = setPaceDiv.props.children[1];
+			const input = formGroupDiv.props.children[0].props.children;
 
-			expect(input.props.type).to.equal('number');
 			expect(input.props.id).to.equal('goal');
-			expect(input.props.value).to.be.empty;
-
-			component.setState({ pendingGoal: 2 });
-
-			input = getGoalInput(component);
-
-			expect(input.props.value).to.equal(2);
-
-			function getGoalInput(component: any): any {
-				const setPaceDiv = component.render().props.children[1];
-				const formGroupDiv = setPaceDiv.props.children[1];
-				return formGroupDiv.props.children[0].props.children;
-			}
 		});
 
 		it('should show the user\'s goal if one is set', () => {

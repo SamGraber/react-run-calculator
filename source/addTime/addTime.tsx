@@ -3,6 +3,7 @@ import { injectable } from 'inversify';
 import { lazyInject } from '../decorators';
 
 import { ITimeEntry, TimeService } from '../services/time.service';
+import { Numberbox } from '../inputs/numberbox';
 
 export interface AddTimeState {
 	time: ITimeEntry;
@@ -18,12 +19,12 @@ export class AddTime extends React.Component<any, AddTimeState> {
 		event.preventDefault();
 	}
 
-	setDistance = (event: React.ChangeEvent<{ value: string }>): void => {
-		this.setState({ time: Object.assign({}, this.state.time, { distance: +event.target.value }) })
+	setDistance = (distance: number): void => {
+		this.setState({ time: Object.assign({}, this.state.time, { distance }) })
 	}
 	
-	setTime = (event: React.ChangeEvent<{ value: string }>): void => {
-		this.setState({ time: Object.assign({}, this.state.time, { time: +event.target.value }) })
+	setTime = (time: number): void => {
+		this.setState({ time: Object.assign({}, this.state.time, { time: time }) })
 	}
 
 	render(): JSX.Element {
@@ -37,7 +38,7 @@ export class AddTime extends React.Component<any, AddTimeState> {
 					<label htmlFor="distance">Distance</label>
 					<div className="row">
 						<div className="col-xs-6">
-							<input className="form-control" type="number" id="distance" name="distance" value={this.state.time.distance || ''} onChange={this.setDistance} />
+							<Numberbox id="distance" value={this.state.time.distance} onChange={this.setDistance} />
 						</div>
 						<div className="col-xs-6 form-control-static">miles</div>
 					</div>
@@ -46,7 +47,7 @@ export class AddTime extends React.Component<any, AddTimeState> {
 					<label htmlFor="time">Time</label>
 					<div className="row">
 						<div className="col-xs-6">
-							<input className="form-control" type="number" id="time" name="time"  value={this.state.time.time || ''} onChange={this.setTime} />
+							<Numberbox id="time" value={this.state.time.time} onChange={this.setTime} />
 						</div>
 						<div className="col-xs-6 form-control-static">minutes</div>
 					</div>
