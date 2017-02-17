@@ -1,0 +1,11 @@
+# NPM package
+/node_modules/
+
+# App data
+data.json
+
+# Build files
+source/**/*.js
+source/**/*.js.map
+source/**/*.d.ts
+/dist/
