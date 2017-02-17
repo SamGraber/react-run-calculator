@@ -9,5 +9,5 @@ export function toDate(minutes: number): Date {
 }
 
 export function remove<T>(array: T[], item: T): T[] {
-	return array.filter(x => x === item);
+	return array.filter(x => x !== item);
 }
