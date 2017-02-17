@@ -13,6 +13,7 @@ export function get<T>(url: string, queryParams?: any): Promise<T> {
 export function post<T>(url: string, body?: any): Promise<T> {
 	const request = new Request(baseUrl + url, {
 		method: 'POST',
+		headers: headers(),
 		body: JSON.stringify(body),
 	});
 
@@ -22,6 +23,7 @@ export function post<T>(url: string, body?: any): Promise<T> {
 export function put<T>(url: string, body?: any): Promise<T> {
 	const request = new Request(baseUrl + url, {
 		method: 'PUT',
+		headers: headers(),
 		body: JSON.stringify(body),
 	});
 
@@ -44,6 +46,12 @@ function buildQueryString(paramObject: any): string {
 	const paramNames = Object.keys(paramObject);
 	const params = paramNames.map(name => `${name}=${encodeURIComponent(paramObject[name])}`);
 	return `?${params.join('&')}`;
+}
+
+function headers(): Headers {
+	let headers = new Headers();
+	headers.append('Content-Type', 'application/json');
+	return headers;
 }
 
 function onSuccess(response: any): any {
