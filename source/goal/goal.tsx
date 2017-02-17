@@ -68,16 +68,13 @@ export class Goal extends React.Component<any, GoalState> {
 							<button className="btn btn-primary" onClick={this.setGoal}>Set goal</button>
 						</div>
 					</div>
-				: null }
-				{!!this.state.goal ?
-					<div>
+				: 	<div>
 						<p>Your goal is {moment(this.state.goal).format('m:ss')} minutes per mile</p>
 						<p>To reach your goal, you will need to improve your average by {moment(this.averageMinusGoal()).format('m:ss')} minutes per mile</p>
 						<div className="form-group">
 							<button className="btn btn-danger" onClick={this.clearGoal}>Clear goal</button>
 						</div>
-					</div>
-				: null}
+					</div>}
 			</div>
 		);
 	}

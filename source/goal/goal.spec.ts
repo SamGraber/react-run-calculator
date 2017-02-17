@@ -100,7 +100,7 @@ describe('Goal', () => {
 		it('should show the user\'s goal if one is set', () => {
 			component.setState({ goal: toDate(2.5) });
 
-			const goalParagraph = component.render().props.children[2].props.children[0];
+			const goalParagraph = component.render().props.children[1].props.children[0];
 
 			expect(goalParagraph.props.children[0]).to.equal('Your goal is ');
 			expect(goalParagraph.props.children[1]).to.equal('2:30');
@@ -113,7 +113,7 @@ describe('Goal', () => {
 				averagePace: toDate(6),
 			});
 
-			const improvementParagraph = component.render().props.children[2].props.children[1];
+			const improvementParagraph = component.render().props.children[1].props.children[1];
 
 			expect(improvementParagraph.props.children[0]).to.equal('To reach your goal, you will need to improve your average by ');
 			expect(improvementParagraph.props.children[1]).to.equal('3:30');
