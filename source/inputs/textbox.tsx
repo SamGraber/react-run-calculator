@@ -9,10 +9,8 @@ export interface TextboxProps {
 	disabled?: boolean;
 }
 
-export const Textbox = ({ id, value, onChange, disabled }: TextboxProps) => (
+export const Textbox = ({ onChange, ...params }: TextboxProps) => (
 	<Inputbox type="text"
-			  id={id}
-			  value={value}
-			  onChange={value => onChange(value)}
-			  disabled={disabled} />
+			  {...params}
+			  onChange={value => onChange(value)} />
 );
