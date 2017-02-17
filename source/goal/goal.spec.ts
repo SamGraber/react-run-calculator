@@ -19,9 +19,10 @@ describe('Goal', () => {
 		component.goalService = goalService;
 		component.timeService = timeService;
 		component.setState = (state: any) => {
-			goal = state.goal;
+			goal = state.goal !== undefined ? state.goal : goal;
 			averagePace = state.averagePace;
 			pendingGoal = state.pendingGoal;
+			component.state = state;
 		};
 	});
 

@@ -7,12 +7,13 @@ describe('AddTime', () => {
 
 	beforeEach(() => {
 		timeService = { 
-			postTime: sinon.spy(() => ({ subscribe: (x: any) => x() })),
+			postTime: sinon.spy(() => ({ then: (x: any) => x() })),
 		};
 		component = new AddTime();
 		component.timeService = timeService;
 		component.setState = (state: any) => {
 			time = state.time;
+			component.state = state;
 		};
 	});
 	

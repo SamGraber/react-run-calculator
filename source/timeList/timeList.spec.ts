@@ -12,8 +12,11 @@ describe('TimeList', () => {
 			deleteTime: sinon.spy(() => ({ then: (x: any) => x() })),
 		};
 		component = new TimeList()
-		component.timeService;
-		component.setState = ({ newTimeList }: any) => timeList = newTimeList;
+		component.timeService = timeService;
+		component.setState = (state: any) => {
+			timeList = state.timeList;
+			component.state = state;
+		};
 	});
 
 	it('should get the list of time entries', () => {
